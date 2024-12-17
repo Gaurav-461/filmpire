@@ -1,27 +1,31 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.jsx'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
-import { Actors, MovieInformation, Movies, Profile } from './components/index.js'
-import PageNotFound from './components/PageNotFound.jsx'
+import App from './App.jsx'
+import { Actors, MovieInformation, Profile, Movies, PageNotFound } from './components/index.js'
+
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <> <App /> <Movies /> </>,
+    element: <App />,
     children: [
       {
-        path: "movie/:id?",
+        path: "/",
+        element: <Movies />,
+      },
+      {
+        path: "/movie/:id?",
         element: <MovieInformation />,
       },
       {
-        path: "actor/:id?",
+        path: "/actor/:id?",
         element: <Actors />,
       },
       {
-        path: "profile/:id?",
+        path: "/profile/:id?",
         element: <Profile />,
       },
       {
@@ -30,7 +34,6 @@ const router = createBrowserRouter([
       }
     ]
   },
-  
 ])
 
 
