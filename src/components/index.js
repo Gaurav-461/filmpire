@@ -4,3 +4,8 @@ export { default as Movies } from "./Movies/Movies.jsx";
 export { default as NavBar } from "./NavBar/NavBar.jsx";
 export { default as Profile } from "./Profile/Profile.jsx";
 export { default as Footer } from "./Footer/Footer.jsx";
+export { default as Sidebar } from "./Sidebar/Sidebar.jsx";
+export { default as PageNotFound } from "./PageNotFound/PageNotFound.jsx";
+export { default as MoviesList } from "./MoviesList/MoviesList.jsx";
+export { default as Movie } from "./Movie/Movie.jsx";
+export { default as Search } from './Search/Search.jsx'
