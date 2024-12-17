@@ -1,20 +1,27 @@
-import { Button, CssBaseline } from '@mui/material'
-import { Outlet } from 'react-router-dom'
-import { NavBar } from './components/index.js'
-import useStyles from './components/styles'
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { Provider } from "react-redux";
 
+import Layout from "./Layout.jsx";
+import { store } from "./app/store.js";
+
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 
 const App = () => {
-  const classes = useStyles()
+  const theme = createTheme({
+    palette: {
+      mode: "dark",
+    },
+  });
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <NavBar />
-      <Button>Global Button</Button>
-      <h1 className='text-green-500 text-4xl'>Home</h1>
-      <Outlet />
-    </div>
-  )
-}
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <Layout />
+      </ThemeProvider>
+    </Provider>
+  );
+};
 
-export default App
+export default App;
