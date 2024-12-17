@@ -9,10 +9,14 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  "keywords": [
+    "Filmpire"
+  ],
   "dependencies": {
     "@alan-ai/alan-sdk-web": "^1.8.70",
     "@emotion/react": "^11.13.5",
     "@emotion/styled": "^11.13.5",
+    "@fontsource/roboto": "^5.1.0",
     "@mui/icons-material": "^6.1.8",
     "@mui/material": "^6.1.8",
     "@mui/styles": "^6.1.8",
