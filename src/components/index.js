@@ -9,3 +9,5 @@ export { default as PageNotFound } from "./PageNotFound/PageNotFound.jsx";
 export { default as MoviesList } from "./MoviesList/MoviesList.jsx";
 export { default as Movie } from "./Movie/Movie.jsx";
 export { default as Search } from './Search/Search.jsx'
+export { default as RatedCard } from './RatedCard/RatedCard.jsx'
+export { default as FeaturedMovie } from './FeaturedMovie/FeaturedMovie.jsx'
