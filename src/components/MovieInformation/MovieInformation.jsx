@@ -7,25 +7,21 @@ import {
   ButtonGroup,
   Grid2,
   Skeleton,
-  useMediaQuery,
   Rating,
   CircularProgress,
-  Grow,
   Pagination,
 } from "@mui/material";
 import {
   Movie as MovieIcon,
   Theaters,
   Language,
-  PlusOne,
   Favorite,
   FavoriteBorderOutlined,
-  Remove,
   ArrowBack,
   RemoveCircle,
   KeyboardArrowDown,
   KeyboardArrowUp,
-  AddToQueue
+  AddToQueue,
 } from "@mui/icons-material";
 
 import { useEffect, useState } from "react";
@@ -59,19 +55,26 @@ const MovieInformation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // Favorite Movies
   const { data: favoriteMovies } = useGetListQuery({
     listName: "favorite/movies",
     accountId: user.id,
     sessionId: localStorage.getItem("session_id"),
     page: 1,
   });
+
+  // WatchList Movies
   const { data: watchListMovies } = useGetListQuery({
     listName: "watchlist/movies",
     accountId: user.id,
     sessionId: localStorage.getItem("session_id"),
     page: 1,
   });
+
+  // Movie Information
   const { data, isFetching, isError } = useGetMovieQuery(id);
+
+  // Movie Recommendations
   const {
     data: recommendations,
     isFetching: isFetchingRecommendation,
@@ -132,7 +135,6 @@ const MovieInformation = () => {
         watchlist: !isMovieWatchListed,
       }
     );
-    console.log("first");
 
     setIsMovieWatchListed((prev) => !prev);
   };
@@ -162,10 +164,12 @@ const MovieInformation = () => {
   return (
     <>
       {/* <section className={classes.backdropImageBlur} style={{backgroundImage:`url(https://image.tmdb.org/t/p/original/${data?.backdrop_path})`}}></section> */}
+
+      {/* Movie Information section */}
       <Grid2 container className={classes.containerSpaceAround}>
         {/* Lift Side */}
         <Grid2
-          size={{ sm: "12", lg: "2" }}
+          size={{ sm: "12", md: "2" }}
           display="flex"
           justifyContent="center"
           alignItems="flex-start"
@@ -201,7 +205,7 @@ const MovieInformation = () => {
               <Typography>{data?.vote_average.toFixed(1)} / 10</Typography>
             </Box>
             <Typography variant="h6" align="center" gutterBottom>
-              {data.runtime}min{" "}
+              {data?.runtime}min{" "}
               {data?.spoken_languages.length > 0
                 ? `| ${data?.spoken_languages[0].english_name}`
                 : ""}
@@ -209,7 +213,7 @@ const MovieInformation = () => {
           </Grid2>
 
           <Grid2 className={classes.genresContainer}>
-            {data?.genres?.map(({ name, id }) => (
+            {data?.genres.map(({ name, id }) => (
               <Link
                 key={name}
                 className={classes.links}
@@ -239,32 +243,31 @@ const MovieInformation = () => {
               Top Cast
             </Typography>
             <Grid2 container spacing={2}>
-              {data &&
-                data?.credits?.cast
-                  ?.map(
-                    (character, i) =>
-                      character.profile_path && (
-                        <Grid2
-                          key={i}
-                          size={{ xs: 4, md: 2 }}
-                          component={Link}
-                          to={`/actor/${character.id}`}
-                        >
-                          <img
-                            className={classes.castImage}
-                            src={`https://image.tmdb.org/t/p/w500/${character?.profile_path}`}
-                            alt={`${character.original_name}`}
-                          />
-                          <Typography color="textPrimary">
-                            {character.original_name}
-                          </Typography>
-                          <Typography color="textSecondary">
-                            {character.character.split("/")[0]}
-                          </Typography>
-                        </Grid2>
-                      )
-                  )
-                  .slice(0, moreCast)}
+              {data?.credits?.cast
+                ?.map(
+                  (character, i) =>
+                    character.profile_path && (
+                      <Grid2
+                        key={i}
+                        size={{ xs: 4, md: 2 }}
+                        component={Link}
+                        to={`/actor/${character.id}`}
+                      >
+                        <img
+                          className={classes.castImage}
+                          src={`https://image.tmdb.org/t/p/w500/${character?.profile_path}`}
+                          alt={`${character.original_name}`}
+                        />
+                        <Typography color="textPrimary">
+                          {character.original_name}
+                        </Typography>
+                        <Typography color="textSecondary">
+                          {character.character.split("/")[0]}
+                        </Typography>
+                      </Grid2>
+                    )
+                )
+                .slice(0, moreCast)}
             </Grid2>
             {data?.credits?.cast.length > 1 && (
               <Button
@@ -285,7 +288,7 @@ const MovieInformation = () => {
                   className={classes.buttonContainer}
                 >
                   <ButtonGroup size="small" variant="outlined">
-                    {data.homepage && (
+                    {data?.homepage && (
                       <Button
                         target="_blank"
                         rel="noopener noreferrer"
@@ -303,13 +306,15 @@ const MovieInformation = () => {
                     >
                       imdb
                     </Button>
-                    <Button
-                      onClick={() => setOpen((prev) => !prev)}
-                      href={"#"}
-                      endIcon={<Theaters />}
-                    >
-                      trailer
-                    </Button>
+                    {data?.videos.results.length > 0 && (
+                      <Button
+                        onClick={() => setOpen((prev) => !prev)}
+                        href={"#"}
+                        endIcon={<Theaters />}
+                      >
+                        trailer
+                      </Button>
+                    )}
                   </ButtonGroup>
                 </Grid2>
                 <Grid2
@@ -357,6 +362,7 @@ const MovieInformation = () => {
           </Grid2>
         </Grid2>
 
+        {/* Movie Recommendations section */}
         {recommendations?.total_pages !== 0 && (
           <Box marginTop="5rem" width="100%">
             <Typography variant="h3" gutterBottom align="center">
@@ -364,7 +370,10 @@ const MovieInformation = () => {
             </Typography>
             {/* Loop through the recommendation movie */}
             {recommendations ? (
-              <MoviesList movies={recommendations.results} numberOfMovie={12} />
+              <MoviesList
+                movies={recommendations?.results}
+                numberOfMovie={12}
+              />
             ) : (
               <Box display="flex" justifyContent="center">
                 Sorry, nothing was found
@@ -391,15 +400,13 @@ const MovieInformation = () => {
           open={open}
           onClose={() => setOpen((prev) => !prev)}
         >
-          {data.videos.results.length > 0 && (
-            <iframe
-              autoPlay
-              className={classes.video}
-              title="Trailer"
-              src={`https://www.youtube.com/embed/${data.videos.results[0].key}`}
-              allow="autoplay"
-            />
-          )}
+          <iframe
+            autoPlay
+            className={classes.video}
+            title="Trailer"
+            src={`https://www.youtube.com/embed/${data.videos.results[0].key}`}
+            allow="autoplay"
+          />
         </Modal>
       </Grid2>
     </>

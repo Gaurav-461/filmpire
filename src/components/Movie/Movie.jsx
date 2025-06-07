@@ -20,10 +20,10 @@ const Movie = ({ movie, i }) => {
                 ? `https://image.tmdb.org/t/p/w500/${movie?.poster_path}`
                 : "https://via.assets.so/img.jpg?w=300&h=190&tc=black&bg=white"
             }
-            alt={movie.title}
+            alt={movie?.title}
           />
           <Typography className={classes.title} variant="p" paddingInline={2}>
-            {movie.title}
+            {movie?.title}
           </Typography>
           <Tooltip disableTouchListener title={movie?.vote_average ? `${movie?.vote_average.toFixed(1)} / 10`: '0 / 10'}>
             <div>

@@ -3,8 +3,7 @@ import { makeStyles } from "@mui/styles";
 export default makeStyles((theme) => ({
   containerSpaceAround: {
     display: "flex",
-    flexDirection: 'row',
-    justifyContent: "space-around",
+    justifyContent: "space-evenly",
     margin: "10px 0 !important",
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
@@ -80,7 +79,8 @@ export default makeStyles((theme) => ({
   modal: {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    zIndex: '10'
   },
   video: {
     width: '50%',
