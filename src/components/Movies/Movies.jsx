@@ -2,16 +2,13 @@
 import { useState, useEffect } from "react";
 import {
   Box,
-  CircularProgress,
-  useMediaQuery,
-  Typography,
   Skeleton,
   Pagination,
 } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { useGetMoviesQuery } from "../../services/TMDB.js";
-import { MoviesList, PageNotFound, FeaturedMovie} from '..'
+import { MoviesList, PageNotFound} from '..'
 
 const Movies = () => {
   const [page, setPage] = useState(1);
@@ -82,6 +79,8 @@ const Movies = () => {
       )}
       {/* <FeaturedMovie movie={data?.results[0]}/> */}
       <MoviesList movies={data?.results} />
+      
+      {/* Pagination */}
       <Box display={"flex"} justifyContent={"center"}>
         <Pagination page={data?.page} count={1000} onChange={(e, value) => setPage(value)} />
       </Box>
