@@ -24,7 +24,7 @@ Filmpire is a modern web application for discovering, searching, and managing mo
 ### Installation
 1. **Clone the repository:**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Gaurav-461/filmpire.git
    cd filmpire
    ```
 2. **Install dependencies:**
