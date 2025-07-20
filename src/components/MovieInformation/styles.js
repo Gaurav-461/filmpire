@@ -4,7 +4,7 @@ export default makeStyles((theme) => ({
   containerSpaceAround: {
     display: "flex",
     maxWidth: "1200px",
-    justifyContent: "space-evenly",
+    justifyContent: "space-around",
     margin: "auto",
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",

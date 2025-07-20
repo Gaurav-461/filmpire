@@ -13,7 +13,6 @@
     "Filmpire"
   ],
   "dependencies": {
-    "@alan-ai/alan-sdk-web": "^1.8.70",
     "@emotion/react": "^11.13.5",
     "@emotion/styled": "^11.13.5",
     "@fontsource/roboto": "^5.1.0",

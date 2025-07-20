@@ -191,12 +191,10 @@ const MovieInformation = () => {
             {data?.tagline}
           </Typography>
 
-          <Grid2 className={classes.containerSpaceAround}>
+          <Grid2 display={"flex"} justifyContent="center" alignItems="center" gap={2}>
             <Box
               display="flex"
               gap={2}
-              justifyContent="center"
-              alignItems="center"
             >
               <Rating readOnly value={data?.vote_average / 2} />
               <Typography>{data?.vote_average.toFixed(1)} / 10</Typography>
@@ -229,6 +227,7 @@ const MovieInformation = () => {
               </Link>
             ))}
           </Grid2>
+
           <Grid2>
             <Typography variant="h5" gutterBottom style={{ marginTop: "10px" }}>
               Overview
@@ -242,10 +241,10 @@ const MovieInformation = () => {
             <Grid2 container spacing={2}>
               {data?.credits?.cast
                 ?.map(
-                  (character, i) =>
+                  (character) =>
                     character.profile_path && (
                       <Grid2
-                        key={i}
+                        key={character.id}
                         size={{ xs: 4, md: 2 }}
                         component={Link}
                         to={`/actor/${character.id}`}
