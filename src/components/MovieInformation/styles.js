@@ -3,8 +3,9 @@ import { makeStyles } from "@mui/styles";
 export default makeStyles((theme) => ({
   containerSpaceAround: {
     display: "flex",
+    maxWidth: "1200px",
     justifyContent: "space-evenly",
-    margin: "10px 0 !important",
+    margin: "auto",
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
       flexWrap: "wrap",
@@ -12,8 +13,8 @@ export default makeStyles((theme) => ({
   },
   poster: {
     borderRadius: "20px",
-    width: "80%",
-    height: 'auto',
+    width: "70%",
+    // height: 'auto',
     objectFit: 'cover',
     marginBottom: '1rem',
     boxShadow:

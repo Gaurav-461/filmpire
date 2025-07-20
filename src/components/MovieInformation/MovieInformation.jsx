@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import {
   Modal,
   Box,
@@ -6,7 +5,6 @@ import {
   Button,
   ButtonGroup,
   Grid2,
-  Skeleton,
   Rating,
   CircularProgress,
   Pagination,
@@ -77,8 +75,6 @@ const MovieInformation = () => {
   // Movie Recommendations
   const {
     data: recommendations,
-    isFetching: isFetchingRecommendation,
-    isError: isRecommendationError,
   } = useGetRecommendationQuery({
     list: "recommendations",
     movie_id: id,
@@ -169,7 +165,7 @@ const MovieInformation = () => {
       <Grid2 container className={classes.containerSpaceAround}>
         {/* Lift Side */}
         <Grid2
-          size={{ sm: "12", md: "2" }}
+          size={{ sm: "12" }}
           display="flex"
           justifyContent="center"
           alignItems="flex-start"
@@ -186,7 +182,7 @@ const MovieInformation = () => {
         </Grid2>
 
         {/* Right Side */}
-        <Grid2 container direction="column" size={{ lg: 7 }}>
+        <Grid2 container direction="column" size={{ lg: 6 }}>
           <Typography variant="h3" align="center" gutterBottom>
             {data?.title} ({data?.release_date.split("-")[0]})
           </Typography>
