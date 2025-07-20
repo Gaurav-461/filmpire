@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Box,
   Skeleton,
@@ -22,8 +21,6 @@ const Movies = () => {
     page,
     searchQuery,
   });
-
-  console.log('Movies at home:-',data)
 
   if (isFetching) {
     return (
@@ -68,6 +65,9 @@ const Movies = () => {
     );
   }
 
+  console.log("Movies Data:", data);
+  
+
   return (
     <Box width="100%" overflow="hidden">
       <p style={{ marginLeft: 0 }}>
@@ -82,7 +82,7 @@ const Movies = () => {
       
       {/* Pagination */}
       <Box display={"flex"} justifyContent={"center"}>
-        <Pagination page={data?.page} count={1000} onChange={(e, value) => setPage(value)} />
+        <Pagination page={data?.page} count={100} onChange={(e, value) => setPage(value)} />
       </Box>
     </Box>
   );

@@ -385,7 +385,7 @@ const MovieInformation = () => {
               <Pagination
                 page={page}
                 count={recommendations?.total_pages}
-                onChange={(__, value) => setPage(value)}
+                onChange={(_, value) => setPage(value)}
               />
             </Box>
           </Box>

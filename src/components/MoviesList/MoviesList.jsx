@@ -7,7 +7,7 @@ import Movie from '../Movie/Movie.jsx'
 const MoviesList = ({ movies, numberOfMovie }) => {
   const classes = useStyles();
   return (
-    <Grid2 container className={classes.moviesContainer} columnGap={'5rem'}>
+    <Grid2 container className={classes.moviesContainer}>
       {movies?.slice(0, numberOfMovie).map((movie, i) => (
         <Movie key={movie.id} movie={movie} i={i} />
       ))}
