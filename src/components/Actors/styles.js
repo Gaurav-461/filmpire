@@ -3,8 +3,8 @@ import { makeStyles } from "@mui/styles";
 export default makeStyles((theme) => ({
   containerSpaceAround: {
     display: "flex",
-    justifyContent: "space-around",
-    flexDirection: "column",
+    justifyContent: "space-evenly",
+    flexDirection: "row",
     margin: "10px 0 !important",
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
@@ -13,7 +13,7 @@ export default makeStyles((theme) => ({
   },
   profileImage: {
     borderRadius: "20px",
-    width: "80%",
+    width: "70%",
     boxShadow:
       theme.palette.mode === "light" && "0.5em 1em 1em rgb(64, 64, 64)",
     border: theme.palette.mode === "dark" && ".1em solid white",

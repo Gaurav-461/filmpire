@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useNavigate, useParams } from "react-router-dom";
 import {
   Box,
@@ -28,17 +27,14 @@ const Actors = () => {
   const { data, isFetching, isError } = useGetActorDetailsQuery(id);
   const {
     data: actorMovies,
-    isFetching: isFetchingActorMovies,
-    isError: isErrorActorMovies,
   } = useGetActorMoviesQuery({ id, page });
-
-  console.log("Actor Movies:-", actorMovies);
 
   const handleShowPara = () => {
     if (showPara === 900) {
       setShowPara(10000);
     } else {
       setShowPara(900);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
@@ -66,14 +62,12 @@ const Actors = () => {
     </>;
   }
 
-  console.log("Actor info:-", data);
-
   return (
     <>
       <section>
         <Grid2 container className={classes.containerSpaceAround} spacing={3}>
           {/* Lift side */}
-          <Grid2 size={{ xl: "4", lg: "5" }}>
+          <Grid2>
             <img
               className={classes.profileImage}
               src={
@@ -86,7 +80,7 @@ const Actors = () => {
           </Grid2>
 
           {/* Right side */}
-          <Grid2 container direction="column" size={{ lg: 7 }}>
+          <Grid2 container direction="column" size={{ lg: 6 }}>
             <Typography variant="h2" gutterBottom align="center">
               {data?.name}
             </Typography>

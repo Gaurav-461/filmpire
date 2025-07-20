@@ -81,14 +81,11 @@ const MovieInformation = () => {
     page,
   });
 
-  console.log("Movie Info:-", data);
-  // console.log('favorite Movies:-',favoriteMovies)
-  // console.log('watchList Movies:-',watchListMovies)
-
   const handleMoreCast = () => {
     if (moreCast === 6) {
       setMoreCast(60);
     } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
       setMoreCast(6);
     }
   };
@@ -104,6 +101,10 @@ const MovieInformation = () => {
       !!watchListMovies?.results?.find((movie) => movie?.id === data?.id)
     );
   }, [data, watchListMovies]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  },[id])
 
   const addToFavorite = async () => {
     await axios.post(
