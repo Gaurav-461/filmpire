@@ -1,4 +1,4 @@
-# Filmpire
+# Cineverse
 
 Cineverse is a modern web application for discovering, searching, and managing movies. It leverages the [TMDB API](https://www.themoviedb.org/documentation/api) to provide up-to-date movie information, genres, and user-specific features like favorites and watchlists.
 
